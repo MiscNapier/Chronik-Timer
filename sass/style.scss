@@ -1,0 +1,41 @@
+// colours
+$darkBlue: #1A1F28;
+$midBlue: #212733;
+$lightBlue: #738699;
+$gold: #FFBF4B;
+$orange: #FF9473;
+
+// font settings
+$mainFont: sans-serif;
+$mainFontSize: 22px;
+$mainFontColour: $lightBlue;
+
+body {
+    background-color: $midBlue;
+    font-family: $mainFont;
+    font-size: $mainFontSize;
+    color: $mainFontColour;
+}
+
+button {
+    background-color: #ffffff00;
+    color: $mainFontColour;
+    border: none;
+}
+
+ion-icon {
+    font-size: 32px;
+}
+
+.parent {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    text-align: center;
+}
+
+#clock {
+    font-size: 300%;
+}
