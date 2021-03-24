@@ -1,5 +1,5 @@
 // buttons
 function playButton() {
-	console.log('test');
+	(document.getElementById('playIcon') as HTMLFormElement).classList.toggle('highlight');
 }
 

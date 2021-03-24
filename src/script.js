@@ -1,4 +1,5 @@
+"use strict";
 // buttons
 function playButton() {
-    console.log('test');
+    document.getElementById('playIcon').classList.toggle('highlight');
 }

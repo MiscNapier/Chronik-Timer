@@ -1,7 +1,7 @@
 body {
   background-color: #212733;
   font-family: sans-serif;
-  font-size: 22px;
+  font-size: 26px;
   color: #738699;
 }
 
@@ -9,6 +9,15 @@ button {
   background-color: #ffffff00;
   color: #738699;
   border: none;
+  outline: none;
+}
+
+::-moz-selection {
+  background-color: #FFFFFF25;
+}
+
+::selection {
+  background-color: #FFFFFF25;
 }
 
 ion-icon {
@@ -22,6 +31,10 @@ ion-icon {
   grid-column-gap: 0px;
   grid-row-gap: 0px;
   text-align: center;
+}
+
+.highlight {
+  color: #FFBF4B;
 }
 
 #clock {
