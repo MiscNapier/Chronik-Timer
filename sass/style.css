@@ -1,3 +1,7 @@
+:root {
+  --secondsPseudo: "";
+}
+
 body {
   background-color: #212733;
   font-family: sans-serif;
@@ -40,5 +44,14 @@ ion-icon {
 #clock {
   font-size: 300%;
   outline: none;
+}
+
+.clockSeconds:after {
+  content: var(--secondsPseudo);
+  font-size: 50%;
+}
+
+#resetIcon:active {
+  color: #FFBF4B;
 }
 /*# sourceMappingURL=style.css.map */

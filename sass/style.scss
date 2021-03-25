@@ -1,3 +1,7 @@
+:root {
+	--secondsPseudo: '';
+}
+
 // colours
 $darkBlue: #1A1F28;
 $midBlue: #212733;
@@ -12,16 +16,16 @@ $mainFontSize: 26px;
 $mainFontColour: $lightBlue;
 
 body {
-    background-color: $midBlue;
-    font-family: $mainFont;
-    font-size: $mainFontSize;
-    color: $mainFontColour;
+	background-color: $midBlue;
+	font-family: $mainFont;
+	font-size: $mainFontSize;
+	color: $mainFontColour;
 }
 
 button {
-    background-color: #ffffff00;
-    color: $mainFontColour;
-    border: none;
+   background-color: #ffffff00;
+   color: $mainFontColour;
+   border: none;
 	outline: none;
 }
 
@@ -30,7 +34,7 @@ button {
 }
 
 ion-icon {
-    font-size: 32px;
+	font-size: 32px;
 }
 
 .parent {
@@ -47,6 +51,17 @@ ion-icon {
 }
 
 #clock {
-    font-size: 300%;
+	font-size: 300%;
 	outline: none;
+
+	
+}
+
+.clockSeconds:after {
+	content: var(--secondsPseudo);
+	font-size: 50%;
+}
+
+#resetIcon:active {
+	color: $gold;
 }
