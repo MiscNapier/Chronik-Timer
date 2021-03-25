@@ -10,9 +10,10 @@
 </head>
 <body>
 	<div class="parent">
-		<div class="child" id="clock" contenteditable="true">1:00</div>
+		<div class="child, clockSeconds" id="clock" contenteditable="true"></div>
 		<div class="child" id="controls">
 			<button id="playIcon"><ion-icon name="play-sharp" onclick="playButton()"></ion-icon></button>
+			<button id="resetIcon"><ion-icon name="sync-sharp" onclick="resetButton()"></ion-icon></button>
 		</div>
 		<div class="child" id="instructions">Test</div>
 	</div>
