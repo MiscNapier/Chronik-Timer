@@ -1,6 +1,6 @@
 Feature Brainstorm:
-- [] Time inputted by user
-- [] Pause/unpause
+- [x] Time inputted by user
+- [x] Pause/unpause
 - [] Countup or countdown
 - [] Ending notification
 - [] Ending warning notification
