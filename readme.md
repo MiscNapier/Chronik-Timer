@@ -10,8 +10,8 @@ Feature Brainstorm:
 - [ ] Break notification
 - [ ] Configure break prompts (every x minutes or x times per timer) and length
 - [ ] Time presets
-- [ ] Remember last time
-- [ ] Reset to last time
+- [/] Remember last time
+- [/] Reset to last time
 - [ ] Sprint/pomodoro settings
 - [ ] Tracking categories
 - [ ] Category history

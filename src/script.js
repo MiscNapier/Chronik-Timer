@@ -81,22 +81,7 @@ function oldCode() {
         }
     }
 }
-// setup page
-document.getElementById('clock').innerText = '?:??';
-document.documentElement.style.cssText = '--secondsPseudo: \':??\'';
-// get local time
-// NOTE: for use in the future allowing one to see what time timers will end
-// or for creating timers based on when you want them to end
-// const currentDate = new Date();
-// const localTime = currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds();
-// console.log(localTime);
-// time object
-var time = {
-    hour: 5,
-    minute: 4,
-    second: 3,
-};
-// get user inputted time
+// toolbox
 function matchy(str, regex) {
     if (str.match(regex) !== null) {
         return str.match(regex)[0];
@@ -105,6 +90,27 @@ function matchy(str, regex) {
         return '';
     }
 }
+// setup page
+document.getElementById('clock').innerText = '0:00';
+document.documentElement.style.cssText = '--secondsPseudo: \':00\'';
+// get local time
+// NOTE: for use in the future allowing one to see what time timers will end
+// or for creating timers based on when you want them to end
+// const currentDate = new Date();
+// const localTime = currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds();
+// console.log(localTime);
+// time object
+var time = {
+    hour: 0,
+    minute: 0,
+    second: 0,
+};
+var savedTime = {
+    hour: 0,
+    minute: 0,
+    second: 0,
+};
+// get user inputted time
 function getTime() {
     var input = document.getElementById('clock').innerText;
     if (input === null || input === '')
@@ -118,38 +124,44 @@ function getTime() {
         time.minute = parseInt(matchy(input, /\d+/)) || 0;
     }
     time.second = 0;
-    console.log(time);
-    // NOTE: currently this is too fuzzy over if it is the hour or minute,
-    // fix it so that x:00 = hour, 0:0x = minute and 0x = minute.
-    // let inputtedTime = document.getElementById('clock')!.innerText.match(/\d+:\d+|\d+/);
-    // if (inputtedTime !== null) {
-    // 	inputtedTime = inputtedTime[0].split(':');
-    // } else {
-    // 	return;
-    // }
-    // console.log(inputtedTime.length);
+    savedTime = time;
 }
 // play button
 var playing = false;
+var intervalId;
 function playButton() {
     var _a;
     (_a = document.getElementById('playIcon')) === null || _a === void 0 ? void 0 : _a.classList.toggle('highlight');
     playing = !playing;
+    if (playing) {
+        countDown();
+        intervalId = setInterval(countDown, 1000);
+    }
+    else {
+        clearInterval(intervalId);
+    }
 }
 // reset button
 function resetButton() {
-    // get last inputted time
+    time = savedTime;
     updater();
 }
-// let intervalId: number;
-// intervalId = setInterval(count, 1000);
-// clearInterval(intervalId);
 // counting down
 function countDown() {
-    var simpleTime = time.hour * 3600 + time.minute * 60 + time.second;
-    console.log(simpleTime);
+    if (time.hour === 0 && time.minute === 0 && time.second === 0) {
+        playButton();
+    }
+    if (time.second === 0) {
+        time.minute -= 1;
+        time.second = 59;
+    }
+    if (time.minute === 0) {
+        time.hour -= 1;
+        time.minute = 59;
+    }
+    console.log('yas');
+    updater();
 }
-countDown();
 // time formatter
 var timeFormatted = {
     hour: '0',
