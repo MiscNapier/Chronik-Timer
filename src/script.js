@@ -105,11 +105,6 @@ var time = {
     minute: 0,
     second: 0,
 };
-var savedTime = {
-    hour: 0,
-    minute: 0,
-    second: 0,
-};
 // get user inputted time
 function getTime() {
     var input = document.getElementById('clock').innerText;
@@ -124,60 +119,88 @@ function getTime() {
         time.minute = parseInt(matchy(input, /\d+/)) || 0;
     }
     time.second = 0;
-    savedTime = time;
 }
 // play button
 var playing = false;
+var simplifiedTime;
 var intervalId;
 function playButton() {
     var _a;
+    if (simplifiedTime === undefined) {
+        simplifiedTime = time.hour * 3600 + time.minute * 60 + time.second;
+    }
     (_a = document.getElementById('playIcon')) === null || _a === void 0 ? void 0 : _a.classList.toggle('highlight');
     playing = !playing;
     if (playing) {
-        countDown();
-        intervalId = setInterval(countDown, 1000);
+        intervalId = setInterval(countUp, 1000);
     }
     else {
         clearInterval(intervalId);
     }
 }
+// playButton() countDown() variation
+// function playButton() {
+// 	simplifiedTime = time.hour * 3600 + time.minute * 60 + time.second;
+// 	if (simplifiedTime === 0) { return; }
+// 	document.getElementById('playIcon')?.classList.toggle('highlight');
+// 	playing = !playing;
+// 	if (playing) { 
+// 		intervalId = setInterval(countDown, 1000);
+// 	} else { 
+// 		clearInterval(intervalId); 
+// 	}
+// }
 // reset button
 function resetButton() {
-    time = savedTime;
-    updater();
-}
-// counting down
-function countDown() {
-    if (time.hour === 0 && time.minute === 0 && time.second === 0) {
+    if (playing) {
         playButton();
     }
-    if (time.second === 0) {
-        time.minute -= 1;
-        time.second = 59;
+    simplifiedTime = 0;
+    updater();
+}
+// counting 
+function countDown() {
+    if (simplifiedTime === 0) {
+        playButton();
+        return;
     }
-    if (time.minute === 0) {
-        time.hour -= 1;
-        time.minute = 59;
-    }
-    console.log('yas');
+    simplifiedTime -= 1;
+    updater();
+}
+function countUp() {
+    simplifiedTime += 1;
     updater();
 }
 // time formatter
 var timeFormatted = {
-    hour: '0',
-    minute: '0',
-    second: '0',
+    num: {
+        hour: 0,
+        minute: 0,
+        second: 0,
+    },
+    str: {
+        hour: '0',
+        minute: '0',
+        second: '0',
+    }
 };
+function formatZeroes(str) {
+    return str.length === 1 ? "0" + str : str;
+}
 function formatter() {
-    timeFormatted.hour = time.hour.toString();
-    timeFormatted.minute = time.minute.toString();
-    timeFormatted.second = time.second.toString();
-    timeFormatted.minute = timeFormatted.minute.length === 1 ? "0" + timeFormatted.minute : timeFormatted.minute;
-    timeFormatted.second = timeFormatted.second.length === 1 ? "0" + timeFormatted.second : timeFormatted.second;
+    var totalSeconds = simplifiedTime;
+    timeFormatted.num.hour = totalSeconds / 3600 >= 1 ? Math.floor(totalSeconds / 3600) : 0;
+    totalSeconds -= timeFormatted.num.hour * 3600;
+    timeFormatted.num.minute = totalSeconds / 60 >= 1 ? Math.floor(totalSeconds / 60) : 0;
+    totalSeconds -= timeFormatted.num.minute * 60;
+    timeFormatted.num.second = totalSeconds;
+    timeFormatted.str.hour = timeFormatted.num.hour.toString();
+    timeFormatted.str.minute = formatZeroes(timeFormatted.num.minute.toString());
+    timeFormatted.str.second = formatZeroes(timeFormatted.num.second.toString());
 }
 // update GUI
 function updater() {
     formatter();
-    document.getElementById('clock').innerText = timeFormatted.hour + ":" + timeFormatted.minute;
-    document.documentElement.style.cssText = "--secondsPseudo: ':" + timeFormatted.second + "'";
+    document.getElementById('clock').innerText = timeFormatted.str.hour + ":" + timeFormatted.str.minute;
+    document.documentElement.style.cssText = "--secondsPseudo: ':" + timeFormatted.str.second + "'";
 }

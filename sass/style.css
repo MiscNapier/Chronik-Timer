@@ -52,7 +52,7 @@ ion-icon {
   font-size: 50%;
 }
 
-#resetIcon:active {
+#resetIcon:active, #playIcon:active {
   color: #FFBF4B;
 }
 /*# sourceMappingURL=style.css.map */
