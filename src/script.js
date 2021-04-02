@@ -92,22 +92,42 @@ document.documentElement.style.cssText = '--secondsPseudo: \':??\'';
 // console.log(localTime);
 // time object
 var time = {
-    hour: 0,
-    minute: 0,
-    second: 0,
+    hour: 5,
+    minute: 4,
+    second: 3,
 };
 // get user inputted time
-function getTime() {
-    // NOTE: currently this is too fuzzy over if it is the hour or minute,
-    // fix it so that x:00 = hour, 0:0x = minute and 0x = minute.
-    var inputtedTime = document.getElementById('clock').innerText.match(/\d+:\d+|\d+/);
-    if (inputtedTime !== null) {
-        inputtedTime = inputtedTime[0].split(':');
+function matchy(str, regex) {
+    if (str.match(regex) !== null) {
+        return str.match(regex)[0];
     }
     else {
-        return;
+        return '';
     }
-    console.log(inputtedTime.length);
+}
+function getTime() {
+    var input = document.getElementById('clock').innerText;
+    if (input === null || input === '')
+        return;
+    if (input.search(':') !== -1) {
+        time.hour = parseInt(matchy(input, /\d+(?=:)/)) || 0;
+        time.minute = parseInt(matchy(input, /(?<=:)\d+/)) || 0;
+    }
+    else {
+        time.hour = 0;
+        time.minute = parseInt(matchy(input, /\d+/)) || 0;
+    }
+    time.second = 0;
+    console.log(time);
+    // NOTE: currently this is too fuzzy over if it is the hour or minute,
+    // fix it so that x:00 = hour, 0:0x = minute and 0x = minute.
+    // let inputtedTime = document.getElementById('clock')!.innerText.match(/\d+:\d+|\d+/);
+    // if (inputtedTime !== null) {
+    // 	inputtedTime = inputtedTime[0].split(':');
+    // } else {
+    // 	return;
+    // }
+    // console.log(inputtedTime.length);
 }
 // play button
 var playing = false;
@@ -121,6 +141,15 @@ function resetButton() {
     // get last inputted time
     updater();
 }
+// let intervalId: number;
+// intervalId = setInterval(count, 1000);
+// clearInterval(intervalId);
+// counting down
+function countDown() {
+    var simpleTime = time.hour * 3600 + time.minute * 60 + time.second;
+    console.log(simpleTime);
+}
+countDown();
 // time formatter
 var timeFormatted = {
     hour: '0',
