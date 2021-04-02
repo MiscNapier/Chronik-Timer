@@ -7,3 +7,6 @@ Feature Brainstorm:
 - [ ] Ending notification
 - [ ] Break notification
 - [ ] Configure break prompts (every x minutes or x times per timer) and length
+
+Bugs:
+- [ ] Button hints are inaccurate
