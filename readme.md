@@ -1,20 +1,10 @@
 Feature Brainstorm:
 - [x] Time inputted by user
 - [x] Pause/unpause
-- [ ] Countup or countdown
-- [x] Ending notification
-	- Can't upload .mp3s to github, because of course not :O)
-	- [ ] Built-in alarm sound (gotta' be some way to do this)
-	- [ ] User added alarms that persist
-- [ ] Ending warning notification
+- [x] Countdown
+- [x] Countup
+- [ ] Countdown/countup toggle
+	- Dropdown menu?
+- [/] Ending notification
 - [ ] Break notification
 - [ ] Configure break prompts (every x minutes or x times per timer) and length
-- [ ] Time presets
-- [/] Remember last time
-- [/] Reset to last time
-- [ ] Sprint/pomodoro settings
-- [ ] Tracking categories
-- [ ] Category history
-- [ ] Show what local time it will be when timer ends
-- [ ] Set timer based on what local time you want it to be when it ends
-- [ ] Debug log
