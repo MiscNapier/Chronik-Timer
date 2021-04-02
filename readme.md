@@ -4,7 +4,6 @@ Feature Brainstorm:
 - [x] Countdown
 - [x] Countup
 - [ ] Countdown/countup toggle
-	- Dropdown menu?
-- [/] Ending notification
+- [ ] Ending notification
 - [ ] Break notification
 - [ ] Configure break prompts (every x minutes or x times per timer) and length
