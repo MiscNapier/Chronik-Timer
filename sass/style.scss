@@ -20,6 +20,7 @@ body {
 	font-family: $mainFont;
 	font-size: $mainFontSize;
 	color: $mainFontColour;
+	overflow-y: hidden;
 }
 
 button {

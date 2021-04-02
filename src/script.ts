@@ -38,7 +38,8 @@ let simplifiedTime:number;
 let intervalId:number;
 
 function playButton() {
-	if (simplifiedTime === undefined) { simplifiedTime = time.hour * 3600 + time.minute * 60 + time.second; }
+	getTime();
+	simplifiedTime = time.hour * 3600 + time.minute * 60 + time.second; 
 	document.getElementById('playIcon')?.classList.toggle('highlight');
 	playing = !playing;
 	if (playing) { 
