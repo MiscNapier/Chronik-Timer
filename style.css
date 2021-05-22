@@ -1,0 +1,116 @@
+:root {
+	--secondsPseudo: "";
+	--fontSize: 128px;
+	--clrTransparent: #ffffff00; 
+
+	/* black, white and gold varaint */
+	--clrBg1: #ffffff;
+	--clrBg2: #00000025;
+	--clrFont1: #000000;
+	--clrFont2: #858585;
+	--clrFont3: #FFBF4B;
+
+	/* blue variant */
+	/*
+	--clrBg1: #212733;
+	--clrBg2: #FFFFFF25;
+	--clrFont1: #738699;
+	--clrFont2: #73869950;
+	--clrFont3: #FFBF4B;
+	*/
+
+	/* rainbow */
+	--white: rgb(250, 250, 250);
+	--black: rgb(0, 0, 0);
+	--grey: rgba(0, 0, 0, .5);
+	--pink: rgb(247, 52, 117);
+	--purple: rgb(206, 96, 221);
+	--cyan: rgb(32, 207, 230);
+	--green: rgb(119, 204, 97);
+	--yellow: rgb(235, 193, 103);
+}
+
+body {
+	background-color: var(--clrBg1);
+	font-family: sans-serif;
+	font-size: var(--fontSize);
+	color: var(--clrFont1);
+	overflow-y: hidden;
+}
+
+button {
+	background-color: var(--clrTransparent);
+	color: var(--clrFont1);
+	border: none;
+	outline: none;
+}
+
+:disabled {
+	color: var(--clrFont2);
+}
+
+::-moz-selection {
+	background-color: var(--clrBg2);
+}
+
+::selection {
+	background-color: var(--clrBg2);
+}
+
+ion-icon {
+	font-size: var(--fontSize);
+}
+
+.parent {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: repeat(3, 1fr);
+	grid-column-gap: 0px;
+	grid-row-gap: 0px;
+	text-align: center;
+}
+
+.highlight {
+	animation: color-change 3s infinite;
+}
+
+#clock {
+	font-family: monospace;
+	font-size: 250%;
+	outline: none;
+}
+
+.clockSeconds:after {
+	content: var(--secondsPseudo);
+	font-size: 50%;
+}
+
+#controls {
+	user-select: none;
+}
+
+#playIcon:hover, #resetIcon:enabled:hover, #modeIcon:enabled:hover {
+	transition-property: transform;
+	transition-duration: 500ms;
+	transition-timing-function: ease;
+	transform: scale(1.15);
+}
+
+#resetIcon:enabled:active, #modeIcon:enabled:active {
+	color: var(--clrFont2);
+}
+
+#playIcon:active {
+	animation: color-change 3s infinite;
+}
+
+@keyframes color-change {
+	0% { color: var(--pink); }
+	20% { color: var(--purple); }
+	40% { color: var(--cyan); }
+	60% { color: var(--green); }
+	80% { color: var(--yellow); }
+	100% { color: var(--pink); }
+ }
+
+/*# sourceMappingURL=style.css.map */

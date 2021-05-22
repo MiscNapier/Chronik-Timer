@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Chronik Timer</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule="" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+	<div class="parent">
+		<div class="child, clockSeconds" id="clock" contenteditable="true" onkeyup="getTime()"></div>
+		<div class="child" id="controls">
+			<button id="playIcon"><ion-icon name="play-sharp" onclick="playButton()"></ion-icon></button>
+			<button id="resetIcon"><ion-icon name="sync-outline" onclick="resetButton()"></ion-icon></button>
+			<button id="modeIcon"><ion-icon name="timer-outline" onclick="modeButton()"></ion-icon></button>
+		</div>
+		<!--<div class="child" id="instructions"></div>-->
+	</div>
+	<!-- <script src="https://unpkg.com/@popperjs/core@2"></script>
+	<script src="https://unpkg.com/tippy.js@6"></script> -->
+	<script src="scripts\script.js"></script>
+</body>
+</html>
