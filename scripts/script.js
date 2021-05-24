@@ -8,6 +8,10 @@ function matchy(str, regex) {
 document.getElementById('clock').innerText = '0:00';
 document.documentElement.style.cssText = '--secondsPseudo: \':00\'';
 
+window.onload = function() {
+	document.body.focus();
+};
+
 // tippy('#modeIcon', {
 // 	placement: 'right',
 // 	delay: 0,
@@ -42,6 +46,14 @@ function getTime() {
 function simplifyTime(timeObject) {
 	return timeObject.hour * 3600 + timeObject.minute * 60 + timeObject.second;
 }
+
+// space keydown
+function watchSpace(event) {
+	var x = event.keyCode;
+	if (x == 32) {  // 32 is the space key
+	  playButton();
+	}
+ }
 
 // play button
 let playing = false;

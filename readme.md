@@ -5,6 +5,7 @@ Feature Brainstorm:
 - [x] Countup
 - [x] Countdown/countup toggle
 - [x] Ending notification
+- [x] Toggle play state with spacebar
 - [ ] Break notification
 - [ ] Configure break prompts (every x minutes or x times per timer) and length
 
