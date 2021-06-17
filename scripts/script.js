@@ -12,14 +12,6 @@ window.onload = function() {
 	document.body.focus();
 };
 
-// tippy('#modeIcon', {
-// 	placement: 'right',
-// 	delay: 0,
-// 	duration: 0,
-// 	animation: 'shift-away',
-// 	content: 'Counting up...',
-//  });
-
 // time object
 let time = {
 	hour: 0,
@@ -53,19 +45,22 @@ function watchSpace(event) {
 	if (x == 32) {  // 32 is the space key
 	  playButton();
 	}
- }
+}
 
 // play button
 let playing = false;
 let simplifiedTime;
 let mode;
 let intervalId;
+let startDate;
 function playButton() {
 	let _a;
-
+	
 	getTime();
-	// console.log(time);
 	simplifiedTime = simplifyTime(time);
+	
+	date = new Date();
+	startDate = (date.getHours() * 60) * 60 + date.getMinutes() * 60 + date.getSeconds() - simplifiedTime;
 
 	(_a = document.getElementById('playIcon')) === null || _a === void 0 ? void 0 : _a.classList.toggle('highlight');
 	playing = !playing;
@@ -73,35 +68,19 @@ function playButton() {
 	if (playing) {
 		document.getElementById('clock').contentEditable = 'false';
 		document.getElementById('resetIcon').disabled = true;
-		document.getElementById('modeIcon').disabled = true;
+		// document.getElementById('modeIcon').disabled = true;
 		intervalId = setInterval(mode, 1000);
-	}
-	else {
+	} else {
 		document.getElementById('clock').contentEditable = 'true';
 		document.getElementById('resetIcon').disabled = false;
-		document.getElementById('modeIcon').disabled = false;
+		// document.getElementById('modeIcon').disabled = false;
 		clearInterval(intervalId);
 	}
 }
 
-// playButton() countDown() variation
-// function playButton() {
-// 	simplifiedTime = time.hour * 3600 + time.minute * 60 + time.second;
-// 	if (simplifiedTime === 0) { return; }
-// 	document.getElementById('playIcon')?.classList.toggle('highlight');
-// 	playing = !playing;
-// 	if (playing) { 
-// 		intervalId = setInterval(countDown, 1000);
-// 	} else { 
-// 		clearInterval(intervalId); 
-// 	}
-// }
-
 // reset button
 function resetButton() {
-	if (playing) {
-		playButton();
-	}
+	if (playing) { playButton(); }
 	time.hour = 0;
 	time.minute = 0;
 	time.second = 0;
@@ -112,31 +91,31 @@ function resetButton() {
 // mode button
 mode = countUp;
 function modeButton() {
-	if (playing) {
-		return;
-	}
-
-	if (mode === countUp) {
-		mode = countDown;
-	} else {
-		mode = countUp;
-	}
+	if (playing) { return; }
+	if (mode === countUp) { 
+		mode = countDown; 
+	} else { mode = countUp; }
 }
 
 // counting 
+// NOTE: not sure how to go about implementing count-down with the date reference, disabled for now
 function countDown() {
 	if (simplifiedTime === 0) {
 		playButton();
 		alert('Time is up!');
 		return;
 	} else {
-		simplifiedTime -= 1;
+		date = new Date();
+		endDate = (date.getHours() * 60) * 60 + date.getMinutes() * 60 + date.getSeconds();
+		simplifiedTime =  endDate - startDate;
 	}
 	updater();
 }
 
 function countUp() {
-	simplifiedTime += 1;
+	date = new Date();
+	endDate = (date.getHours() * 60) * 60 + date.getMinutes() * 60 + date.getSeconds();
+	simplifiedTime = endDate - startDate;
 	updater();
 }
 
